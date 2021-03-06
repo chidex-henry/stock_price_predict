@@ -71,6 +71,101 @@ def visualize(data):
     ticker4=data[data.tickerid==4]
     ticker0=data[data.tickerid==0]
 
+    ##weighted avg price vs time ticker 0
+    x=ticker0.weightedavgprice
+    y=ticker0.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Weighted Average Price Ticker 0')
+    plt.xlabel('Time')
+    plt.ylabel('Weighted Average Price')
+    plt.show()
+
+    ##weighted avg price vs time ticker 1
+    x=ticker1.weightedavgprice
+    y=ticker1.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Weighted Average Price Ticker 1')
+    plt.xlabel('Time')
+    plt.ylabel('Weighted Average Price')
+    plt.show()
+
+    ##weighted avg price vs time ticker 2
+    x=ticker2.weightedavgprice
+    y=ticker2.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Weighted Average Price Ticker 2')
+    plt.xlabel('Time')
+    plt.ylabel('Weighted Average Price')
+    plt.show()
+
+    ##weighted avg price vs time ticker 3
+    x=ticker3.weightedavgprice
+    y=ticker3.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Weighted Average Price Ticker 3')
+    plt.xlabel('Time')
+    plt.ylabel('Weighted Average Price')
+    plt.show()
+
+    ##big visual tickers 1,2,3,4 ## doesnt look very nice
+    x=ticker1.weightedavgprice
+    y=ticker1.datetime
+    x1=ticker2.weightedavgprice
+    y1=ticker2.datetime
+    x2=ticker3.weightedavgprice
+    y2=ticker3.datetime
+    x3=ticker4.weightedavgprice
+    y3=ticker4.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    dates1=matplotlib.dates.date2num(y1)
+    dates2=matplotlib.dates.date2num(y2)
+    dates3=matplotlib.dates.date2num(y3)
+
+
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.plot_date(dates1,x1,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.plot_date(dates2,x2,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.plot_date(dates3,x3,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Weighted Average Price')
+    plt.xlabel('Time')
+    plt.ylabel('Weighted Average Price')
+    plt.show()
+
+    ##big visual tickers 3,4 ## look very nice
+
+    x2=ticker3.weightedavgprice
+    y2=ticker3.datetime
+    x3=ticker4.weightedavgprice
+    y3=ticker4.datetime
+
+
+
+    dates2=matplotlib.dates.date2num(y2)
+    dates3=matplotlib.dates.date2num(y3)
+
+
+
+    plt.plot_date(dates2,x2,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.plot_date(dates3,x3,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Weighted Average Price')
+    plt.xlabel('Time')
+    plt.ylabel('Weighted Average Price')
+    plt.show()
+
 
 
 
