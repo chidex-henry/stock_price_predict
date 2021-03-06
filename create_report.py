@@ -56,9 +56,303 @@ def visualize(data):
     print("NOTE: This file is for data visualization")
 
     #sample plot
-    sns_plot =sns.scatterplot(data=data, x='high',y='low')
-    plt.show()
-    sns_plot.figure.savefig(r'plots/sample_plot.png')
+      
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import time
+
+    data=clean_data
+
+data['change']=data['close']-data['open']
+data['percentchange']=data['change'] / data['open'] *100
+ticker1=data[data.tickerid==1]
+ticker2=data[data.tickerid==2]
+ticker3=data[data.tickerid==3]
+ticker4=data[data.tickerid==4]
+ticker0=data[data.tickerid==0]
+
+plt.plot(ticker0.close,linewidth=1)
+plt.show()
+
+##weighted avg price vs time ticker 0
+x=ticker0.weightedavgprice
+y=ticker0.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Weighted Average Price Ticker 0')
+plt.xlabel('Time')
+plt.ylabel('Weighted Average Price')
+plt.show()
+
+##weighted avg price vs time ticker 1
+x=ticker1.weightedavgprice
+y=ticker1.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Weighted Average Price Ticker 1')
+plt.xlabel('Time')
+plt.ylabel('Weighted Average Price')
+plt.show()
+
+##weighted avg price vs time ticker 2
+x=ticker2.weightedavgprice
+y=ticker2.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Weighted Average Price Ticker 2')
+plt.xlabel('Time')
+plt.ylabel('Weighted Average Price')
+plt.show()
+
+##weighted avg price vs time ticker 3
+x=ticker3.weightedavgprice
+y=ticker3.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Weighted Average Price Ticker 3')
+plt.xlabel('Time')
+plt.ylabel('Weighted Average Price')
+plt.show()
+
+##big visual tickers 1,2,3,4 ## doesnt look very nice
+x=ticker1.weightedavgprice
+y=ticker1.datetime
+x1=ticker2.weightedavgprice
+y1=ticker2.datetime
+x2=ticker3.weightedavgprice
+y2=ticker3.datetime
+x3=ticker4.weightedavgprice
+y3=ticker4.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+dates1=matplotlib.dates.date2num(y1)
+dates2=matplotlib.dates.date2num(y2)
+dates3=matplotlib.dates.date2num(y3)
+
+
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.plot_date(dates1,x1,linestyle='solid',linewidth=0.2,markersize=0)
+plt.plot_date(dates2,x2,linestyle='solid',linewidth=0.2,markersize=0)
+plt.plot_date(dates3,x3,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Weighted Average Price')
+plt.xlabel('Time')
+plt.ylabel('Weighted Average Price')
+plt.show()
+
+##big visual tickers 3,4 ## doesnt look very nice
+
+x2=ticker3.weightedavgprice
+y2=ticker3.datetime
+x3=ticker4.weightedavgprice
+y3=ticker4.datetime
+
+
+
+dates2=matplotlib.dates.date2num(y2)
+dates3=matplotlib.dates.date2num(y3)
+
+
+
+plt.plot_date(dates2,x2,linestyle='solid',linewidth=0.2,markersize=0)
+plt.plot_date(dates3,x3,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Weighted Average Price')
+plt.xlabel('Time')
+plt.ylabel('Weighted Average Price')
+plt.show()
+
+
+
+
+##percent change vs time ticker 0
+x=ticker0.percentchange
+y=ticker0.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Percent Change Ticker 0')
+plt.xlabel('Time')
+plt.ylabel('Percent Change')
+plt.show()
+
+##percent change vs time ticker 1
+x=ticker1.percentchange
+y=ticker1.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Percent Change Ticker 1')
+plt.xlabel('Time')
+plt.ylabel('Percent Change')
+plt.show()
+
+##percent change vs time ticker 2
+x=ticker2.percentchange
+y=ticker2.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Percent Change Ticker 2')
+plt.xlabel('Time')
+plt.ylabel('Percent Change')
+plt.show()
+
+##percent change vs time ticker 3
+x=ticker3.percentchange
+y=ticker3.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Percent Change Ticker 3')
+plt.xlabel('Time')
+plt.ylabel('Percent Change')
+plt.show()
+
+##percent change vs time ticker 4
+x=ticker4.percentchange
+y=ticker4.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Percent Change Ticker 4')
+plt.xlabel('Time')
+plt.ylabel('Percent Change')
+plt.show()
+
+
+
+##percent change vs time ticker 4
+x=ticker4.change
+y=ticker4.datetime
+
+
+dates=matplotlib.dates.date2num(y)
+plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+plt.title('Change Ticker 4')
+plt.xlabel('Time')
+plt.ylabel('Change')
+plt.show()
+
+
+##percent change histogram Ticker 0
+ticker0['percentchange'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 0 Percent Change Histogram')
+plt.xlabel('Percent Change')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker0.percentchange.describe()
+
+##percent change histogram Ticker 1
+ticker1['percentchange'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 1 Percent Change Histogram')
+plt.xlabel('Percent Change')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker1.percentchange.describe()
+
+##percent change histogram Ticker 2
+ticker2['percentchange'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 2 Percent Change Histogram')
+plt.xlabel('Percent Change')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker2.percentchange.describe()
+
+##percent change histogram Ticker 3
+ticker3['percentchange'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 3 Percent Change Histogram')
+plt.xlabel('Percent Change')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker3.percentchange.describe()
+
+##percent change histogram Ticker 4
+ticker4['percentchange'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 4 Percent Change Histogram')
+plt.xlabel('Percent Change')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker4.percentchange.describe()
+
+
+##volume histogram Ticker 0
+ticker0['volume'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 0 Volume Histogram')
+plt.xlabel('Volume')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker0.volume.describe()
+
+##volume histogram Ticker 1
+ticker1['volume'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 1 Volume Histogram')
+plt.xlabel('Volume')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker1.volume.describe()
+
+##volume histogram Ticker 2
+ticker2['volume'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 2 Volume Histogram')
+plt.xlabel('Volume')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker2.volume.describe()
+
+##volume histogram Ticker 3
+ticker3['volume'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 3 Volume Histogram')
+plt.xlabel('Volume')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker3.volume.describe()
+
+
+
+
+
+##volume histogram Ticker 4
+ticker4['volume'].hist(bins = 50, figsize = (10,5)) 
+plt.title('Ticker 4 Volume Histogram')
+plt.xlabel('Volume')
+plt.ylabel('Frequency (log scale)')
+plt.yscale('log')
+plt.show()
+#satistics
+ticker4.volume.describe()
+
 
 
     return None
