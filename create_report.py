@@ -165,7 +165,79 @@ def visualize(data):
     plt.xlabel('Time')
     plt.ylabel('Weighted Average Price')
     plt.show()
+    ##percent change vs time ticker 0
+    x=ticker0.percentchange
+    y=ticker0.datetime
 
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Percent Change Ticker 0')
+    plt.xlabel('Time')
+    plt.ylabel('Percent Change')
+    plt.show()
+
+    ##percent change vs time ticker 1
+    x=ticker1.percentchange
+    y=ticker1.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Percent Change Ticker 1')
+    plt.xlabel('Time')
+    plt.ylabel('Percent Change')
+    plt.show()
+
+    ##percent change vs time ticker 2
+    x=ticker2.percentchange
+    y=ticker2.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Percent Change Ticker 2')
+    plt.xlabel('Time')
+    plt.ylabel('Percent Change')
+    plt.show()
+
+    ##percent change vs time ticker 3
+    x=ticker3.percentchange
+    y=ticker3.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Percent Change Ticker 3')
+    plt.xlabel('Time')
+    plt.ylabel('Percent Change')
+    plt.show()
+
+    ##percent change vs time ticker 4
+    x=ticker4.percentchange
+    y=ticker4.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Percent Change Ticker 4')
+    plt.xlabel('Time')
+    plt.ylabel('Percent Change')
+    plt.show()
+
+
+
+    ##percent change vs time ticker 4
+    x=ticker4.change
+    y=ticker4.datetime
+
+
+    dates=matplotlib.dates.date2num(y)
+    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
+    plt.title('Change Ticker 4')
+    plt.xlabel('Time')
+    plt.ylabel('Change')
+    plt.show()
 
 
 
