@@ -239,7 +239,55 @@ def visualize(data):
     plt.ylabel('Change')
     plt.show()
 
+    ##percent change histogram Ticker 0
+    ticker0['percentchange'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 0 Percent Change Histogram')
+    plt.xlabel('Percent Change')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker0.percentchange.describe()
 
+    ##percent change histogram Ticker 1
+    ticker1['percentchange'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 1 Percent Change Histogram')
+    plt.xlabel('Percent Change')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker1.percentchange.describe()
+
+    ##percent change histogram Ticker 2
+    ticker2['percentchange'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 2 Percent Change Histogram')
+    plt.xlabel('Percent Change')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker2.percentchange.describe()
+
+    ##percent change histogram Ticker 3
+    ticker3['percentchange'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 3 Percent Change Histogram')
+    plt.xlabel('Percent Change')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker3.percentchange.describe()
+
+    ##percent change histogram Ticker 4
+    ticker4['percentchange'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 4 Percent Change Histogram')
+    plt.xlabel('Percent Change')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker4.percentchange.describe()
 
 
     return None
