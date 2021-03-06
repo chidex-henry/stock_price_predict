@@ -289,6 +289,60 @@ def visualize(data):
     #satistics
     ticker4.percentchange.describe()
 
+    ##volume histogram Ticker 0
+    ticker0['volume'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 0 Volume Histogram')
+    plt.xlabel('Volume')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker0.volume.describe()
+
+    ##volume histogram Ticker 1
+    ticker1['volume'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 1 Volume Histogram')
+    plt.xlabel('Volume')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker1.volume.describe()
+
+    ##volume histogram Ticker 2
+    ticker2['volume'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 2 Volume Histogram')
+    plt.xlabel('Volume')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker2.volume.describe()
+
+    ##volume histogram Ticker 3
+    ticker3['volume'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 3 Volume Histogram')
+    plt.xlabel('Volume')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker3.volume.describe()
+
+
+
+
+
+    ##volume histogram Ticker 4
+    ticker4['volume'].hist(bins = 50, figsize = (10,5)) 
+    plt.title('Ticker 4 Volume Histogram')
+    plt.xlabel('Volume')
+    plt.ylabel('Frequency (log scale)')
+    plt.yscale('log')
+    plt.show()
+    #satistics
+    ticker4.volume.describe()
+
 
     return None
 
