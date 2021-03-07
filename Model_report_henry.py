@@ -109,6 +109,19 @@ feature_scaling = StandardScaler()   #for feature scaling
     #scale the training and testing features 
 X_train_scaled = feature_scaling.fit_transform(X_train)
 X_test_scaled = feature_scaling.transform(X_test)
+
+
+    #fit the model
+model.fit(X_train, Y_train)
+
+    #make prediction on test dataset
+Y_pred = model.predict(X_test_scaled)
+
+    #view the predictied Y
+Y_pred
+
+    #import metrics
+from sklearn import metrics
    
 
     #PURPOSE: use ML to predict stock price
