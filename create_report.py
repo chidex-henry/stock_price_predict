@@ -5,6 +5,11 @@ import numpy as np
 import matplotlib
 import time
 import os
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn import metrics
+from scipy.spatial.distance import cdist
+
 
 
 #NOTE: I am mannually assigning the path because my Visual Basic Code had a different working directory
@@ -343,8 +348,12 @@ def visualize(data):
     plt.show()
     #satistics
     ticker4.volume.describe()
-
-
+    #K-means Clustering
+    #transform the data to begin cluster analysis
+    #Create a PCA model to reduce our data to 2 dimensions for visualisation
+    pca=PCA(2)
+    df=pca.fit_transform(clean_data)
+    df.shape
     return None
 
 
