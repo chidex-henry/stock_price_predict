@@ -382,7 +382,13 @@ def visualize(data):
     
     for key, val in mapping1.items():
     print(f'{key} : {val}')
-
+    
+    #plot of elbow method using Distortion
+    plt.plot(K, distortions, 'bx-')
+    plt.xlabel('Values of K')
+    plt.ylabel('Distortion')
+    plt.title('The Elbow Method using Distortion')
+    plt.show()
 
     return None
 
