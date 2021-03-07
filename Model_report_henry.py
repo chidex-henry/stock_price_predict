@@ -122,6 +122,21 @@ Y_pred
 
     #import metrics
 from sklearn import metrics
+
+    #get model intercept, coefficient, MAE, MSE, R squared 
+model.intercept_
+
+model.coef_
+
+    #estimate the mean absolute error
+metrics.mean_absolute_error(Y_test, Y_pred)
+
+    #get the mean square error
+metrics.mean_squared_error(Y_test, Y_pred)
+
+    #calculate the r-squared value
+r2_value = metrics.r2_score(Y_test,Y_pred)
+r2_value
    
 
     #PURPOSE: use ML to predict stock price
