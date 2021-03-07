@@ -400,6 +400,15 @@ def visualize(data):
     plt.ylabel('Inertia')
     plt.title('The Elbow Method using Inertia')
     plt.show() 
+
+    #K-Means clustering analysis    
+    kmeans = KMeans(n_clusters= 4)
+ 
+    #predict the labels of clusters.
+    label = kmeans.fit_predict(df)
+ 
+    print(label)
+
     return None
 
 
