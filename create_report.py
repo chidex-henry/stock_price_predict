@@ -409,6 +409,18 @@ def visualize(data):
  
     print(label)
 
+    #Getting unique labels
+ 
+    u_labels = np.unique(label)
+ 
+    #plotting the results:
+ 
+    for i in u_labels:
+        plt.scatter(df[label == i , 0] , df[label == i , 1] , label = i)
+    plt.legend()
+    plt.show()
+
+
     return None
 
 
