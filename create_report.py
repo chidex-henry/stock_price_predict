@@ -1,6 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
+import matplotlib
+import time
+import os
 
 
 #NOTE: I am mannually assigning the path because my Visual Basic Code had a different working directory
@@ -57,10 +61,7 @@ def visualize(data):
 
     #sample plot
       
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    import time
+
 
 
     data['change']=data['close']-data['open']
