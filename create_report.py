@@ -420,6 +420,17 @@ def visualize(data):
     plt.legend()
     plt.show()
 
+    #Finding the centroids
+    centroids = kmeans.cluster_centers_
+    u_labels = np.unique(label)
+ 
+    #plotting the results with the centroids shown
+ 
+    for i in u_labels:
+        plt.scatter(df[label == i , 0] , df[label == i , 1] , label = i)
+    plt.scatter(centroids[:,0] , centroids[:,1] , s = 80, color = 'k')
+    plt.legend()
+    plt.show()
 
     return None
 
