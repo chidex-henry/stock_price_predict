@@ -394,6 +394,12 @@ def visualize(data):
     for key, val in mapping2.items():
     print(f'{key} : {val}')
 
+    #the elbow method plot using inertia
+    plt.plot(K, inertias, 'bx-')
+    plt.xlabel('Values of K')
+    plt.ylabel('Inertia')
+    plt.title('The Elbow Method using Inertia')
+    plt.show() 
     return None
 
 
