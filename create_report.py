@@ -357,6 +357,77 @@ def model(data):
     #OUTPUT: None
 
     print("NOTE: This file is for predicting stock price")
+    new_data=data.copy()
+    #drop datetime variable
+    new_data=new_data.drop(columns=['datetime'])
+    
+        #divide the dataset into features and response variables**
+    X = new_data.drop('close', axis='columns')
+    Y = new_data['close']
+
+    X.head()
+
+    Y.head()
+    
+        #Split into training and testing data# use 80% for training and 20% for testing
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, Y_train, Y_test = train_test_split( X, Y, test_size= 0.2, random_state=0)
+
+        #get the size of the traiing data
+    X_train.shape
+
+    X_test.shape
+
+        #Data preprocessing
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.linear_model import LinearRegression
+    from sklearn.compose import make_column_transformer
+
+        #define the model class
+    model = LinearRegression()
+    feature_scaling = StandardScaler()   #for feature scaling 
+
+
+        #scale the training and testing features 
+    X_train_scaled = feature_scaling.fit_transform(X_train)
+    X_test_scaled = feature_scaling.transform(X_test)
+
+
+        #fit the model
+    model.fit(X_train, Y_train)
+
+        #make prediction on test dataset
+    Y_pred = model.predict(X_test_scaled)
+
+        #view the predictied Y
+    Y_pred
+
+        #import metrics
+    from sklearn import metrics
+
+        #get model intercept, coefficient, MAE, MSE, R squared 
+    model.intercept_
+
+    model.coef_
+
+        #estimate the mean absolute error
+    metrics.mean_absolute_error(Y_test, Y_pred)
+
+        #get the mean square error
+    metrics.mean_squared_error(Y_test, Y_pred)
+
+        #calculate the r-squared value
+    r2_value = metrics.r2_score(Y_test,Y_pred)
+    print('r-squared value: ',r2_value)
+    
+    
+    #using cross validation
+    from sklearn.model_selection import cross_val_score
+
+        #try the 10 fold cross validated regression
+    scores = cross_val_score(model, X_train, Y_train, cv=10)
+    print('\nCross validation scores: ',scores)
+
 
     return None
 
