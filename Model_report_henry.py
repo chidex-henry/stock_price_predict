@@ -72,20 +72,29 @@ def visualize(data):
 #-------------------------------------------------MODEL------------------------------------------------------------------    
 def model(data):
     
-#import file from directory
+    #import file from directory
  clean_data.head()
 
-# #drop epochtime column
+    # #drop epochtime column
 new_data =clean_data.drop('epochtime', axis='columns')
 new_data.head()
    
-#divide the dataset into features and response variables**
+    #divide the dataset into features and response variables**
 X = new_data.drop('close', axis='columns')
 Y = new_data['close']
+
+X.head()
+
+Y.head()
    
+    #Split into training and testing data# use 80% for training and 20% for testing
+from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split( X, Y, test_size= 0.2, random_state=0)
    
-   
-   
+   #get the size of the traiing data
+X_train.shape
+
+X_test.shape
    
    
 
