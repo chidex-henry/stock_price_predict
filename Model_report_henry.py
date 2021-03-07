@@ -90,12 +90,11 @@ Y.head()
     #Split into training and testing data# use 80% for training and 20% for testing
 from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split( X, Y, test_size= 0.2, random_state=0)
-   
-   #get the size of the traiing data
+
+    #get the size of the traiing data
 X_train.shape
 
 X_test.shape
-   
    
 
     #PURPOSE: use ML to predict stock price
