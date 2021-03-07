@@ -356,7 +356,7 @@ def visualize(data):
     pca=PCA(2)
     df=pca.fit_transform(clean_data)
     df.shape
-    return None
+    
 
     #Elbow Method to estimate how many clusters 
     distortions = []
@@ -378,7 +378,13 @@ def visualize(data):
                                    'euclidean'), axis=1)) / df.shape[0]
         mapping2[k] = kmeanModel.inertia_
 
+    #Distortion values Table where distortion is the sum of square errors (SSE)
+    
+    for key, val in mapping1.items():
+    print(f'{key} : {val}')
 
+
+    return None
 
 
 #-------------------------------------------------MODEL------------------------------------------------------------------    
