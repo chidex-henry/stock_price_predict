@@ -95,6 +95,20 @@ X_train, X_test, Y_train, Y_test = train_test_split( X, Y, test_size= 0.2, rando
 X_train.shape
 
 X_test.shape
+
+    #Data preprocessing
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.compose import make_column_transformer
+
+    #define the model class
+model = LinearRegression()
+feature_scaling = StandardScaler()   #for feature scaling 
+
+
+    #scale the training and testing features 
+X_train_scaled = feature_scaling.fit_transform(X_train)
+X_test_scaled = feature_scaling.transform(X_test)
    
 
     #PURPOSE: use ML to predict stock price
