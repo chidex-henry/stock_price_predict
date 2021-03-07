@@ -348,6 +348,8 @@ def visualize(data):
     plt.show()
     #satistics
     ticker4.volume.describe()
+
+
     #K-means Clustering
     #transform the data to begin cluster analysis
     #Create a PCA model to reduce our data to 2 dimensions for visualisation
@@ -355,6 +357,26 @@ def visualize(data):
     df=pca.fit_transform(clean_data)
     df.shape
     return None
+
+    #Elbow Method to estimate how many clusters 
+    distortions = []
+    inertias = []
+    mapping1 = {}
+    mapping2 = {}
+    K = range(1, 15)
+ 
+    for k in K:
+        # Building and fitting the model
+        kmeanModel = KMeans(n_clusters=k).fit(df)
+        kmeanModel.fit(df)
+ 
+        distortions.append(sum(np.min(cdist(df, kmeanModel.cluster_centers_,
+                                        'euclidean'), axis=1)) / df.shape[0])
+        inertias.append(kmeanModel.inertia_)
+ 
+        mapping1[k] = sum(np.min(cdist(df, kmeanModel.cluster_centers_,
+                                   'euclidean'), axis=1)) / df.shape[0]
+        mapping2[k] = kmeanModel.inertia_
 
 
 
