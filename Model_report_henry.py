@@ -138,6 +138,14 @@ metrics.mean_squared_error(Y_test, Y_pred)
 r2_value = metrics.r2_score(Y_test,Y_pred)
 r2_value
    
+   
+   #using cross validation
+from sklearn.model_selection import cross_val_score
+
+    #try the 10 fold cross validated regression
+scores = cross_val_score(model, X_train, Y_train, cv=10)
+scores
+    
 
     #PURPOSE: use ML to predict stock price
     #INPUT: data: cleaned data from explore_and_clean_data()
