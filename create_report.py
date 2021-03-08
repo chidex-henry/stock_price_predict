@@ -107,6 +107,56 @@ def visualize(data):
     min4=ticker4.groupby(pd.Grouper(key='time',freq='5min')).min()
     max4=ticker4.groupby(pd.Grouper(key='time',freq='5min')).max()
 
+##candlestick plots for each stock 0,1,2,3,4
+    ##stock 0
+    import plotly.graph_objects as go
+    averages0['newdates']=pd.to_datetime(averages0.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages0['newdates'],
+                open=averages0['open'], high=max0['high'],
+                low=min0['low'], close=averages0['close'])
+                     ])
+
+    fig.update_layout(title='Candlestick Chart Stock 0',xaxis_rangeslider_visible=True)
+    fig.show()
+
+    ##stock 1 candlestick
+    averages1['newdates']=pd.to_datetime(averages1.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages1['newdates'],
+                    open=averages1['open'], high=max1['high'],
+                    low=min1['low'], close=averages1['close'])
+                        ])
+
+    fig.update_layout(title='Candlestick Chart Stock 1',xaxis_rangeslider_visible=True)
+    fig.show() 
+    ## stock 2 candlestick
+    averages2['newdates']=pd.to_datetime(averages2.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages2['newdates'],
+                open=averages2['open'], high=max2['high'],
+                low=min2['low'], close=averages2['close'])
+                     ])
+
+    fig.update_layout(title='Candlestick Chart Stock 2',xaxis_rangeslider_visible=True)
+    fig.show()
+
+    ##stock 3 candlestick
+
+    averages3['newdates']=pd.to_datetime(averages3.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages3['newdates'],
+                open=averages3['open'], high=max3['high'],
+                low=min3['low'], close=averages3['close'])
+                     ])
+
+    fig.update_layout(title='Candlestick Chart Stock 3',xaxis_rangeslider_visible=True)
+    fig.show()
+    #stock 4 candlestick
+    averages4['newdates']=pd.to_datetime(averages4.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages4['newdates'],
+                open=averages4['open'], high=max4['high'],
+                low=min4['low'], close=averages4['close'])
+                     ])
+
+    fig.update_layout(title='Candlestick Chart Stock 4',xaxis_rangeslider_visible=True)
+    fig.show()
 
     return None
 
