@@ -158,6 +158,16 @@ def visualize(data):
     fig.update_layout(title='Candlestick Chart Stock 4',xaxis_rangeslider_visible=True)
     fig.show()
 
+    ####stacked histogram log y scale, percent change all stocks
+    ##use this
+    plt.hist([sums0['percentchange'],sums1['percentchange'],sums2['percentchange'],sums3['percentchange'],sums4['percentchange']], stacked=True,bins=50,edgecolor='black',align='left')
+    plt.title('Stacked Histogram Percent Change (5 minute increments)')
+    plt.yscale('log')
+    plt.ylabel('Frequency (log scale)')
+    plt.xlabel('Percent Change')
+    plt.legend(["Stock 0", "Stock 1","Stock 2","Stock 3","Stock 4"])
+    plt.show()
+
     return None
 
 
