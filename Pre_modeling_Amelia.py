@@ -295,7 +295,7 @@ def visualize(data):
     for key, val in mapping1.items():
     print(f'{key} : {val}')
 
-    return None
+
 
     #plot of elbow method using Distortion
     plt.plot(K, distortions, 'bx-')
@@ -321,7 +321,7 @@ def visualize(data):
     label = kmeans.fit_predict(df)
 
     print(label)
-    
+
     #Getting unique labels
 
     u_labels = np.unique(label)
@@ -333,8 +333,19 @@ def visualize(data):
     plt.legend()
     plt.show()
 
+    #Finding the centroids
+    centroids = kmeans.cluster_centers_
+    u_labels = np.unique(label)
 
+    #plotting the results with the centroids shown
 
+    for i in u_labels:
+        plt.scatter(df[label == i , 0] , df[label == i , 1] , label = i)
+    plt.scatter(centroids[:,0] , centroids[:,1] , s = 80, color = 'k')
+    plt.legend()
+    plt.show()
+
+    return None
 
 
 
