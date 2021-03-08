@@ -107,7 +107,7 @@ def visualize(data):
     min4=ticker4.groupby(pd.Grouper(key='time',freq='5min')).min()
     max4=ticker4.groupby(pd.Grouper(key='time',freq='5min')).max()
 
-##candlestick plots for each stock 0,1,2,3,4
+    ##candlestick plots for each stock 0,1,2,3,4
     ##stock 0
     import plotly.graph_objects as go
     averages0['newdates']=pd.to_datetime(averages0.index.values)
@@ -167,6 +167,51 @@ def visualize(data):
     plt.xlabel('Percent Change')
     plt.legend(["Stock 0", "Stock 1","Stock 2","Stock 3","Stock 4"])
     plt.show()
+
+    ##percent change each stock same graph, only data 1/29 12pm-1/30 12am
+    ## this is where bulk of data lies so I trimmed it to not include begininng and end
+    ## probably the one we should use
+    plt.plot(sums0.percentchange[195:346],linestyle='solid',label='Stock 0',linewidth=0.3)
+    plt.plot(sums1.percentchange[195:346],linestyle='solid',label='Stock 1',linewidth=0.3)
+    plt.plot(sums2.percentchange[195:346],linestyle='solid',label='Stock 2',linewidth=0.3)
+    plt.plot(sums3.percentchange[195:346],linestyle='solid',label='Stock 3',linewidth=0.3)
+    plt.plot(sums4.percentchange[195:346],linestyle='solid',label='Stock 4',linewidth=0.3)
+    plt.title('Percent Changes (1/29 12pm - 1/30 12am)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Percent Change')
+    plt.legend()
+    plt.show()
+
+    ##percent change each stock same graph, doesnt look good as plot above
+    ##this is the one with all data points except long right tail of stock 0
+    ##maybe use this one
+
+    plt.plot(sums0.percentchange[0:346],linestyle='solid',label='Stock 0',linewidth=0.3)
+    plt.plot(sums1.percentchange,linestyle='solid',label='Stock 1',linewidth=0.3)
+    plt.plot(sums2.percentchange,linestyle='solid',label='Stock 2',linewidth=0.3)
+    plt.plot(sums3.percentchange,linestyle='solid',label='Stock 3',linewidth=0.3)
+    plt.plot(sums4.percentchange,linestyle='solid',label='Stock 4',linewidth=0.3)
+    plt.title('Percent Changes (1/28 8pm - 1/30 12am)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Percent Change')
+    plt.legend()
+    plt.show()
+
+
+    ##percent change each stock same graph, all data is here, doesnt look good with stock 0's long right tail
+    ##this is the one with all data points
+    ##probably shouldnt use this one
+    plt.plot(sums0.percentchange,linestyle='solid',label='Stock 0',linewidth=0.3)
+    plt.plot(sums1.percentchange,linestyle='solid',label='Stock 1',linewidth=0.3)
+    plt.plot(sums2.percentchange,linestyle='solid',label='Stock 2',linewidth=0.3)
+    plt.plot(sums3.percentchange,linestyle='solid',label='Stock 3',linewidth=0.3)
+    plt.plot(sums4.percentchange,linestyle='solid',label='Stock 4',linewidth=0.3)
+    plt.title('Percent Changes (1/28 8pm - 2/4 9pm)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Percent Change')
+    plt.legend()
+    plt.show()
+
 
     return None
 
