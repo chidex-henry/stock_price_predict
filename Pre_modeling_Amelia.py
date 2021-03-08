@@ -265,6 +265,7 @@ def visualize(data):
     #K-means Clustering
     #transform the data to begin cluster analysis
     #Create a PCA model to reduce our data to 2 dimensions for visualisation
+    clean_data=data
     pca=PCA(2)
     df=pca.fit_transform(clean_data)
     df.shape
@@ -295,6 +296,13 @@ def visualize(data):
     print(f'{key} : {val}')
 
     return None
+
+    #plot of elbow method using Distortion
+    plt.plot(K, distortions, 'bx-')
+    plt.xlabel('Values of K')
+    plt.ylabel('Distortion')
+    plt.title('The Elbow Method using Distortion')
+    plt.show()
 
 
 
