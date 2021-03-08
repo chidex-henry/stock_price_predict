@@ -213,6 +213,50 @@ def visualize(data):
     plt.show()
 
 
+    ##volume each stock same graph, only data 1/29 12pm-1/30 12am
+    ## this is where bulk of data lies so I trimmed it to not include begininng and end
+    ## maybe the one we should use
+    plt.plot(sums0.volume[195:346],linestyle='solid',label='Stock 0',linewidth=0.5)
+    plt.plot(sums1.volume[195:346],linestyle='solid',label='Stock 1',linewidth=0.5)
+    plt.plot(sums2.volume[195:346],linestyle='solid',label='Stock 2',linewidth=0.5)
+    plt.plot(sums3.volume[195:346],linestyle='solid',label='Stock 3',linewidth=0.5)
+    plt.plot(sums4.volume[195:346],linestyle='solid',label='Stock 4',linewidth=0.5)
+    plt.title('Volume (1/29 12pm - 1/30 12am)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Volume')
+    plt.legend()
+    plt.show()
+
+    ##volume each stock same graph, doesnt look good as plot above but may be better
+    ##this is the one with all data points except long right tail of stock 0
+    ##maybe/probably use this one
+
+    plt.plot(sums0.volume[0:346],linestyle='solid',label='Stock 0',linewidth=0.5)
+    plt.plot(sums1.volume,linestyle='solid',label='Stock 1',linewidth=0.5)
+    plt.plot(sums2.volume,linestyle='solid',label='Stock 2',linewidth=0.5)
+    plt.plot(sums3.volume,linestyle='solid',label='Stock 3',linewidth=0.5)
+    plt.plot(sums4.volume,linestyle='solid',label='Stock 4',linewidth=0.5)
+    plt.title('Volume (1/28 8pm - 1/30 12am)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Volume')
+    plt.legend()
+    plt.show()
+
+
+    ##volume each stock same graph, all data is here, doesnt look good with stock 0's long right tail
+    ##this is the one with all data points
+    ##looks really bad
+    plt.plot(sums0.volume,linestyle='solid',label='Stock 0',linewidth=0.3)
+    plt.plot(sums1.volume,linestyle='solid',label='Stock 1',linewidth=0.3)
+    plt.plot(sums2.volume,linestyle='solid',label='Stock 2',linewidth=0.3)
+    plt.plot(sums3.volume,linestyle='solid',label='Stock 3',linewidth=0.3)
+    plt.plot(sums4.volume,linestyle='solid',label='Stock 4',linewidth=0.3)
+    plt.title('Volume (1/28 8pm - 2/4 9pm)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Volume')
+    plt.legend()
+    plt.show()
+
     return None
 
 
