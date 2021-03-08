@@ -304,6 +304,10 @@ def visualize(data):
     plt.title('The Elbow Method using Distortion')
     plt.show()
 
+    #table of Inertia results where Inertia tells us how far the points within a cluster are
+    for key, val in mapping2.items():
+    print(f'{key} : {val}')
+
 
 
 
