@@ -64,286 +64,198 @@ def visualize(data):
 
 
 
+    import numpy as np
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import time
+    import plotly.graph_objects as go
     data['change']=data['close']-data['open']
     data['percentchange']=data['change'] / data['open'] *100
+
+    data['time'] = pd.to_datetime(data.datetime)
     ticker1=data[data.tickerid==1]
     ticker2=data[data.tickerid==2]
     ticker3=data[data.tickerid==3]
     ticker4=data[data.tickerid==4]
     ticker0=data[data.tickerid==0]
+    
+    ##breaking data into 5 minute intervals for visulization purposes for each stock
+    averages1=ticker1.groupby(pd.Grouper(key='time',freq='5min')).mean()
+    sums1=ticker1.groupby(pd.Grouper(key='time',freq='5min')).sum()
+    min1=ticker1.groupby(pd.Grouper(key='time',freq='5min')).min()
+    max1=ticker1.groupby(pd.Grouper(key='time',freq='5min')).max()
 
-    ##weighted avg price vs time ticker 0
-    x=ticker0.weightedavgprice
-    y=ticker0.datetime
+    averages0=ticker0.groupby(pd.Grouper(key='time',freq='5min')).mean()
+    sums0=ticker0.groupby(pd.Grouper(key='time',freq='5min')).sum()
+    min0=ticker0.groupby(pd.Grouper(key='time',freq='5min')).min()
+    max0=ticker0.groupby(pd.Grouper(key='time',freq='5min')).max()
 
+    
+    averages2=ticker2.groupby(pd.Grouper(key='time',freq='5min')).mean()
+    sums2=ticker2.groupby(pd.Grouper(key='time',freq='5min')).sum()
+    min2=ticker2.groupby(pd.Grouper(key='time',freq='5min')).min()
+    max2=ticker2.groupby(pd.Grouper(key='time',freq='5min')).max()
 
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Weighted Average Price Ticker 0')
-    plt.xlabel('Time')
-    plt.ylabel('Weighted Average Price')
-    plt.show()
+    averages3=ticker3.groupby(pd.Grouper(key='time',freq='5min')).mean()
+    sums3=ticker3.groupby(pd.Grouper(key='time',freq='5min')).sum()
+    min3=ticker3.groupby(pd.Grouper(key='time',freq='5min')).min()
+    max3=ticker3.groupby(pd.Grouper(key='time',freq='5min')).max()
 
-    ##weighted avg price vs time ticker 1
-    x=ticker1.weightedavgprice
-    y=ticker1.datetime
+    averages4=ticker4.groupby(pd.Grouper(key='time',freq='5min')).mean()
+    sums4=ticker4.groupby(pd.Grouper(key='time',freq='5min')).sum()
+    min4=ticker4.groupby(pd.Grouper(key='time',freq='5min')).min()
+    max4=ticker4.groupby(pd.Grouper(key='time',freq='5min')).max()
 
+    ##candlestick plots for each stock 0,1,2,3,4
+    ##stock 0
+    import plotly.graph_objects as go
+    averages0['newdates']=pd.to_datetime(averages0.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages0['newdates'],
+                open=averages0['open'], high=max0['high'],
+                low=min0['low'], close=averages0['close'])
+                     ])
 
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Weighted Average Price Ticker 1')
-    plt.xlabel('Time')
-    plt.ylabel('Weighted Average Price')
-    plt.show()
+    fig.update_layout(title='Candlestick Chart Stock 0',xaxis_rangeslider_visible=True)
+    fig.show()
 
-    ##weighted avg price vs time ticker 2
-    x=ticker2.weightedavgprice
-    y=ticker2.datetime
+    ##stock 1 candlestick
+    averages1['newdates']=pd.to_datetime(averages1.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages1['newdates'],
+                    open=averages1['open'], high=max1['high'],
+                    low=min1['low'], close=averages1['close'])
+                        ])
 
+    fig.update_layout(title='Candlestick Chart Stock 1',xaxis_rangeslider_visible=True)
+    fig.show() 
+    ## stock 2 candlestick
+    averages2['newdates']=pd.to_datetime(averages2.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages2['newdates'],
+                open=averages2['open'], high=max2['high'],
+                low=min2['low'], close=averages2['close'])
+                     ])
 
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Weighted Average Price Ticker 2')
-    plt.xlabel('Time')
-    plt.ylabel('Weighted Average Price')
-    plt.show()
+    fig.update_layout(title='Candlestick Chart Stock 2',xaxis_rangeslider_visible=True)
+    fig.show()
 
-    ##weighted avg price vs time ticker 3
-    x=ticker3.weightedavgprice
-    y=ticker3.datetime
+    ##stock 3 candlestick
 
+    averages3['newdates']=pd.to_datetime(averages3.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages3['newdates'],
+                open=averages3['open'], high=max3['high'],
+                low=min3['low'], close=averages3['close'])
+                     ])
 
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Weighted Average Price Ticker 3')
-    plt.xlabel('Time')
-    plt.ylabel('Weighted Average Price')
-    plt.show()
+    fig.update_layout(title='Candlestick Chart Stock 3',xaxis_rangeslider_visible=True)
+    fig.show()
+    #stock 4 candlestick
+    averages4['newdates']=pd.to_datetime(averages4.index.values)
+    fig = go.Figure(data=[go.Candlestick( x=averages4['newdates'],
+                open=averages4['open'], high=max4['high'],
+                low=min4['low'], close=averages4['close'])
+                     ])
 
-    ##big visual tickers 1,2,3,4 ## doesnt look very nice
-    x=ticker1.weightedavgprice
-    y=ticker1.datetime
-    x1=ticker2.weightedavgprice
-    y1=ticker2.datetime
-    x2=ticker3.weightedavgprice
-    y2=ticker3.datetime
-    x3=ticker4.weightedavgprice
-    y3=ticker4.datetime
+    fig.update_layout(title='Candlestick Chart Stock 4',xaxis_rangeslider_visible=True)
+    fig.show()
 
-
-    dates=matplotlib.dates.date2num(y)
-    dates1=matplotlib.dates.date2num(y1)
-    dates2=matplotlib.dates.date2num(y2)
-    dates3=matplotlib.dates.date2num(y3)
-
-
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.plot_date(dates1,x1,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.plot_date(dates2,x2,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.plot_date(dates3,x3,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Weighted Average Price')
-    plt.xlabel('Time')
-    plt.ylabel('Weighted Average Price')
-    plt.show()
-
-    ##big visual tickers 3,4 ## look very nice
-
-    x2=ticker3.weightedavgprice
-    y2=ticker3.datetime
-    x3=ticker4.weightedavgprice
-    y3=ticker4.datetime
-
-
-
-    dates2=matplotlib.dates.date2num(y2)
-    dates3=matplotlib.dates.date2num(y3)
-
-
-
-    plt.plot_date(dates2,x2,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.plot_date(dates3,x3,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Weighted Average Price')
-    plt.xlabel('Time')
-    plt.ylabel('Weighted Average Price')
-    plt.show()
-    ##percent change vs time ticker 0
-    x=ticker0.percentchange
-    y=ticker0.datetime
-
-
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Percent Change Ticker 0')
-    plt.xlabel('Time')
-    plt.ylabel('Percent Change')
-    plt.show()
-
-    ##percent change vs time ticker 1
-    x=ticker1.percentchange
-    y=ticker1.datetime
-
-
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Percent Change Ticker 1')
-    plt.xlabel('Time')
-    plt.ylabel('Percent Change')
-    plt.show()
-
-    ##percent change vs time ticker 2
-    x=ticker2.percentchange
-    y=ticker2.datetime
-
-
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Percent Change Ticker 2')
-    plt.xlabel('Time')
-    plt.ylabel('Percent Change')
-    plt.show()
-
-    ##percent change vs time ticker 3
-    x=ticker3.percentchange
-    y=ticker3.datetime
-
-
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Percent Change Ticker 3')
-    plt.xlabel('Time')
-    plt.ylabel('Percent Change')
-    plt.show()
-
-    ##percent change vs time ticker 4
-    x=ticker4.percentchange
-    y=ticker4.datetime
-
-
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Percent Change Ticker 4')
-    plt.xlabel('Time')
-    plt.ylabel('Percent Change')
-    plt.show()
-
-
-
-    ##percent change vs time ticker 4
-    x=ticker4.change
-    y=ticker4.datetime
-
-
-    dates=matplotlib.dates.date2num(y)
-    plt.plot_date(dates,x,linestyle='solid',linewidth=0.2,markersize=0)
-    plt.title('Change Ticker 4')
-    plt.xlabel('Time')
-    plt.ylabel('Change')
-    plt.show()
-
-    ##percent change histogram Ticker 0
-    ticker0['percentchange'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 0 Percent Change Histogram')
+    ####stacked histogram log y scale, percent change all stocks
+    ##use this
+    plt.hist([sums0['percentchange'],sums1['percentchange'],sums2['percentchange'],sums3['percentchange'],sums4['percentchange']], stacked=True,bins=50,edgecolor='black',align='left')
+    plt.title('Stacked Histogram Percent Change (5 minute increments)')
+    plt.yscale('log')
+    plt.ylabel('Frequency (log scale)')
     plt.xlabel('Percent Change')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
+    plt.legend(["Stock 0", "Stock 1","Stock 2","Stock 3","Stock 4"])
     plt.show()
-    #satistics
-    ticker0.percentchange.describe()
 
-    ##percent change histogram Ticker 1
-    ticker1['percentchange'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 1 Percent Change Histogram')
-    plt.xlabel('Percent Change')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
+    ##percent change each stock same graph, only data 1/29 12pm-1/30 12am
+    ## this is where bulk of data lies so I trimmed it to not include begininng and end
+    ## probably the one we should use
+    plt.plot(sums0.percentchange[195:346],linestyle='solid',label='Stock 0',linewidth=0.3)
+    plt.plot(sums1.percentchange[195:346],linestyle='solid',label='Stock 1',linewidth=0.3)
+    plt.plot(sums2.percentchange[195:346],linestyle='solid',label='Stock 2',linewidth=0.3)
+    plt.plot(sums3.percentchange[195:346],linestyle='solid',label='Stock 3',linewidth=0.3)
+    plt.plot(sums4.percentchange[195:346],linestyle='solid',label='Stock 4',linewidth=0.3)
+    plt.title('Percent Changes (1/29 12pm - 1/30 12am)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Percent Change')
+    plt.legend()
     plt.show()
-    #satistics
-    ticker1.percentchange.describe()
 
-    ##percent change histogram Ticker 2
-    ticker2['percentchange'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 2 Percent Change Histogram')
-    plt.xlabel('Percent Change')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
+    ##percent change each stock same graph, doesnt look good as plot above
+    ##this is the one with all data points except long right tail of stock 0
+    ##maybe use this one
+
+    plt.plot(sums0.percentchange[0:346],linestyle='solid',label='Stock 0',linewidth=0.3)
+    plt.plot(sums1.percentchange,linestyle='solid',label='Stock 1',linewidth=0.3)
+    plt.plot(sums2.percentchange,linestyle='solid',label='Stock 2',linewidth=0.3)
+    plt.plot(sums3.percentchange,linestyle='solid',label='Stock 3',linewidth=0.3)
+    plt.plot(sums4.percentchange,linestyle='solid',label='Stock 4',linewidth=0.3)
+    plt.title('Percent Changes (1/28 8pm - 1/30 12am)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Percent Change')
+    plt.legend()
     plt.show()
-    #satistics
-    ticker2.percentchange.describe()
 
-    ##percent change histogram Ticker 3
-    ticker3['percentchange'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 3 Percent Change Histogram')
-    plt.xlabel('Percent Change')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
+
+    ##percent change each stock same graph, all data is here, doesnt look good with stock 0's long right tail
+    ##this is the one with all data points
+    ##probably shouldnt use this one
+    plt.plot(sums0.percentchange,linestyle='solid',label='Stock 0',linewidth=0.3)
+    plt.plot(sums1.percentchange,linestyle='solid',label='Stock 1',linewidth=0.3)
+    plt.plot(sums2.percentchange,linestyle='solid',label='Stock 2',linewidth=0.3)
+    plt.plot(sums3.percentchange,linestyle='solid',label='Stock 3',linewidth=0.3)
+    plt.plot(sums4.percentchange,linestyle='solid',label='Stock 4',linewidth=0.3)
+    plt.title('Percent Changes (1/28 8pm - 2/4 9pm)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Percent Change')
+    plt.legend()
     plt.show()
-    #satistics
-    ticker3.percentchange.describe()
 
-    ##percent change histogram Ticker 4
-    ticker4['percentchange'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 4 Percent Change Histogram')
-    plt.xlabel('Percent Change')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
+
+    ##volume each stock same graph, only data 1/29 12pm-1/30 12am
+    ## this is where bulk of data lies so I trimmed it to not include begininng and end
+    ## maybe the one we should use
+    plt.plot(sums0.volume[195:346],linestyle='solid',label='Stock 0',linewidth=0.5)
+    plt.plot(sums1.volume[195:346],linestyle='solid',label='Stock 1',linewidth=0.5)
+    plt.plot(sums2.volume[195:346],linestyle='solid',label='Stock 2',linewidth=0.5)
+    plt.plot(sums3.volume[195:346],linestyle='solid',label='Stock 3',linewidth=0.5)
+    plt.plot(sums4.volume[195:346],linestyle='solid',label='Stock 4',linewidth=0.5)
+    plt.title('Volume (1/29 12pm - 1/30 12am)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Volume')
+    plt.legend()
     plt.show()
-    #satistics
-    ticker4.percentchange.describe()
 
-    ##volume histogram Ticker 0
-    ticker0['volume'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 0 Volume Histogram')
-    plt.xlabel('Volume')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
+    ##volume each stock same graph, doesnt look good as plot above but may be better
+    ##this is the one with all data points except long right tail of stock 0
+    ##maybe/probably use this one
+
+    plt.plot(sums0.volume[0:346],linestyle='solid',label='Stock 0',linewidth=0.5)
+    plt.plot(sums1.volume,linestyle='solid',label='Stock 1',linewidth=0.5)
+    plt.plot(sums2.volume,linestyle='solid',label='Stock 2',linewidth=0.5)
+    plt.plot(sums3.volume,linestyle='solid',label='Stock 3',linewidth=0.5)
+    plt.plot(sums4.volume,linestyle='solid',label='Stock 4',linewidth=0.5)
+    plt.title('Volume (1/28 8pm - 1/30 12am)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Volume')
+    plt.legend()
     plt.show()
-    #satistics
-    ticker0.volume.describe()
 
-    ##volume histogram Ticker 1
-    ticker1['volume'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 1 Volume Histogram')
-    plt.xlabel('Volume')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
+
+    ##volume each stock same graph, all data is here, doesnt look good with stock 0's long right tail
+    ##this is the one with all data points
+    ##looks really bad
+    plt.plot(sums0.volume,linestyle='solid',label='Stock 0',linewidth=0.3)
+    plt.plot(sums1.volume,linestyle='solid',label='Stock 1',linewidth=0.3)
+    plt.plot(sums2.volume,linestyle='solid',label='Stock 2',linewidth=0.3)
+    plt.plot(sums3.volume,linestyle='solid',label='Stock 3',linewidth=0.3)
+    plt.plot(sums4.volume,linestyle='solid',label='Stock 4',linewidth=0.3)
+    plt.title('Volume (1/28 8pm - 2/4 9pm)')
+    plt.xlabel('Time (5 minute increments)')
+    plt.ylabel('Volume')
+    plt.legend()
     plt.show()
-    #satistics
-    ticker1.volume.describe()
-
-    ##volume histogram Ticker 2
-    ticker2['volume'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 2 Volume Histogram')
-    plt.xlabel('Volume')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
-    plt.show()
-    #satistics
-    ticker2.volume.describe()
-
-    ##volume histogram Ticker 3
-    ticker3['volume'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 3 Volume Histogram')
-    plt.xlabel('Volume')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
-    plt.show()
-    #satistics
-    ticker3.volume.describe()
-
-
-
-
-
-    ##volume histogram Ticker 4
-    ticker4['volume'].hist(bins = 50, figsize = (10,5)) 
-    plt.title('Ticker 4 Volume Histogram')
-    plt.xlabel('Volume')
-    plt.ylabel('Frequency (log scale)')
-    plt.yscale('log')
-    plt.show()
-    #satistics
-    ticker4.volume.describe()
-
 
     return None
 
