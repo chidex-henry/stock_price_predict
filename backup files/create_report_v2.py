@@ -1,15 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly
 import seaborn as sns
 import numpy as np
 import matplotlib
 import time
 import os
-from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
-from sklearn import metrics
-from scipy.spatial.distance import cdist
-
 
 
 #NOTE: I am mannually assigning the path because my Visual Basic Code had a different working directory
@@ -262,90 +258,8 @@ def visualize(data):
     plt.legend()
     plt.show()
 
-    #K-means Clustering
-    #transform the data to begin cluster analysis
-    #Create a PCA model to reduce our data to 2 dimensions for visualisation
-    clean_data=data
-    pca=PCA(2)
-    df=pca.fit_transform(clean_data)
-    df.shape
-
-    #Elbow Method to estimate how many clusters 
-    distortions = []
-    inertias = []
-    mapping1 = {}
-    mapping2 = {}
-    K = range(1, 15)
-
-    for k in K:
-        # Building and fitting the model
-        kmeanModel = KMeans(n_clusters=k).fit(df)
-        kmeanModel.fit(df)
-
-        distortions.append(sum(np.min(cdist(df, kmeanModel.cluster_centers_,
-                                        'euclidean'), axis=1)) / df.shape[0])
-        inertias.append(kmeanModel.inertia_)
-
-        mapping1[k] = sum(np.min(cdist(df, kmeanModel.cluster_centers_,
-                                   'euclidean'), axis=1)) / df.shape[0]
-        mapping2[k] = kmeanModel.inertia_
-
-    #Distortion values Table where distortion is the sum of square errors (SSE)
-
-    for key, val in mapping1.items():
-    print(f'{key} : {val}')
-
-
-
-    #plot of elbow method using Distortion
-    plt.plot(K, distortions, 'bx-')
-    plt.xlabel('Values of K')
-    plt.ylabel('Distortion')
-    plt.title('The Elbow Method using Distortion')
-    plt.show()
-
-    #table of Inertia results where Inertia tells us how far the points within a cluster are
-    for key, val in mapping2.items():
-    print(f'{key} : {val}')
-
-    #the elbow method plot using inertia
-    plt.plot(K, inertias, 'bx-')
-    plt.xlabel('Values of K')
-    plt.ylabel('Inertia')
-    plt.title('The Elbow Method using Inertia')
-    plt.show() 
-    #K-Means clustering analysis    
-    kmeans = KMeans(n_clusters= 4)
-
-    #predict the labels of clusters.
-    label = kmeans.fit_predict(df)
-
-    print(label)
-
-    #Getting unique labels
-
-    u_labels = np.unique(label)
-
-    #plotting the results:
-
-    for i in u_labels:
-        plt.scatter(df[label == i , 0] , df[label == i , 1] , label = i)
-    plt.legend()
-    plt.show()
-
-    #Finding the centroids
-    centroids = kmeans.cluster_centers_
-    u_labels = np.unique(label)
-
-    #plotting the results with the centroids shown
-
-    for i in u_labels:
-        plt.scatter(df[label == i , 0] , df[label == i , 1] , label = i)
-    plt.scatter(centroids[:,0] , centroids[:,1] , s = 80, color = 'k')
-    plt.legend()
-    plt.show()
-
     return None
+
 
 
 
@@ -362,6 +276,7 @@ def model(data):
     
         #divide the dataset into features and response variables**
     X = new_data.drop('close', axis='columns')
+    print(X.head())
     Y = new_data['close']
 
     X.head()
